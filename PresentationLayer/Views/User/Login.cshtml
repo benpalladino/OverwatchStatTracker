@@ -1,0 +1,22 @@
+﻿@model PresentationLayer.Models.UserViewModel
+
+@using (Html.BeginForm("Login", "User", FormMethod.Post))
+{
+    <div class="FormTable">
+        <h1>Login</h1>
+        <br />
+        <div class="form-group">
+            <div>
+                @Html.LabelFor(m => m.SingleUser.Username)
+                @Html.TextBoxFor(m => m.SingleUser.Username, htmlAttributes: new { @class = "form-control" })
+            </div>
+            <div>
+                @Html.LabelFor(m => m.SingleUser.Password)
+                @Html.PasswordFor(m => m.SingleUser.Password, htmlAttributes: new { @class = "form-control" })
+            </div>
+        </div>
+        @ViewBag.ErrorMessage
+        <br />
+        <input class="submitButton btn btn-primary" type="submit" value="Login" />
+    </div>
+}

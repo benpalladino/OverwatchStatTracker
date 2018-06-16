@@ -1,0 +1,30 @@
+﻿@model PresentationLayer.Models.UserViewModel
+
+@using (Html.BeginForm("Register", "User", FormMethod.Post))
+{
+    <div class="FormTable">
+        <h1>Sign-Up</h1>
+        <table>
+            <tr>
+                @Html.ValidationMessageFor(m => m.SingleUser.Username)
+                <td>@Html.LabelFor(m => m.SingleUser.Username)</td>
+                <td>@Html.TextBoxFor(m => m.SingleUser.Username, htmlAttributes: new { @class = "form-control" })</td>
+            </tr>
+            <tr>
+                @Html.ValidationMessageFor(m => m.SingleUser.Password)
+                <td>@Html.LabelFor(m => m.SingleUser.Password)</td>
+                <td>@Html.PasswordFor(m => m.SingleUser.Password, htmlAttributes: new { @class = "form-control" })</td>
+            </tr>
+            <tr>
+                <td>@Html.LabelFor(m => m.SingleUser.Email)</td>
+                <td>@Html.TextBoxFor(m => m.SingleUser.Email, htmlAttributes: new { @class = "form-control" })</td>
+            </tr>
+            <tr>
+                <td>@Html.LabelFor(m => m.SingleUser.BattleNet)</td>
+                <td>@Html.TextBoxFor(m => m.SingleUser.BattleNet, htmlAttributes: new { @class = "form-control" })</td>
+            </tr>
+        </table>
+        <br />
+        <input class="submitButton btn btn-success" type="submit" value="Submit" />
+    </div>
+}
