@@ -1,0 +1,64 @@
+﻿@*AUTHOR - BEN PALLADINO - ONSHORE OUTSOURCING*@
+@model PresentationLayer.Models.UserViewModel
+@using PresentationLayer.Models
+@{
+    ViewBag.Title = "ViewUsers";
+}
+<head>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+</head>
+<body class="patternBG">
+    @*NAMES FOR EACH COLUMN IN THE TABLE*@
+
+    <h2 class="h2Styles">REGISTERED USERS</h2>
+    <table class="table tableTDStyles">
+        <tr>
+            <th>Username</th>
+            <th>Email</th>
+            <th>BattleNet</th>
+            <th>Team Name</th>
+            <th>Role Title</th>
+            <th></th>
+            <th></th>
+        </tr>
+
+        @*DISPLAYS EVERY USER IN THE TABLE*@
+        @foreach (User singleUser in Model.UserList)
+        {
+            <tr class="tableRows backgroundShapes">
+                <td>@Html.DisplayFor(m => singleUser.Username)</td>
+                <td>@Html.DisplayFor(m => singleUser.Email)</td>
+                <td>@Html.DisplayFor(m => singleUser.BattleNet)</td>
+                <td>@Html.DisplayFor(m => singleUser.TeamName)</td>
+                <td>@Html.DisplayFor(m => singleUser.RoleTitle)</td>
+
+                @if (Session["RoleID"] == null)
+                {
+                }
+
+                @*WILL ONLY DISPLAY THE LOGGED IN USER'S INFORMATION*@
+                @if ((int)Session["RoleID"] == 1 && (string)Session["UserName"] == singleUser.Username)
+                {
+                    <td>@Html.ActionLink(" ", "UpdateUsers", "User", routeValues: new { UserID = singleUser.UserID }, htmlAttributes: new { @class = "btn btn-primary btn-Custom fas fa-edit" })</td>
+                }
+                @*ALLOWS THE MODERATOR ROLE TO UPDATE AND VIEW ALL USERS*@
+                @if ((int)Session["RoleID"] == 2)
+                {
+                    <td>@Html.ActionLink(" ", "UpdateUsers", "User", routeValues: new { UserID = singleUser.UserID }, htmlAttributes: new { @class = "btn btn-primary btn-Custom fas fa-edit" })</td>
+                }
+
+                @if ((int)Session["RoleID"] == 3 && (string)Session["Username"] == singleUser.Username)
+                {
+                    <td>@Html.ActionLink(" ", "UpdateUsers", "User", routeValues: new { UserID = singleUser.UserID }, htmlAttributes: new { @class = "btn btn-primary btn-Custom fas fa-edit" })</td>
+                    <td></td>
+                }
+                @*GIVES ADMINS FULL CONTROL OVER USERS INCLUDING ADD, UPDATE, AND DELETE*@
+                @if ((int)Session["RoleID"] == 3 && (string)Session["Username"] != singleUser.Username)
+                {
+                    <td>@Html.ActionLink(" ", "UpdateUsers", "User", routeValues: new { UserID = singleUser.UserID }, htmlAttributes: new { @class = "btn btn-primary btn-Custom fas fa-edit" })</td>
+                    <td>@Html.ActionLink(" ", "DeleteUser", "User", routeValues: new { UserID = singleUser.UserID, StatsID = singleUser.StatsID }, htmlAttributes: new { @class = "btn btn-danger btn-Custom fas fa-trash" })</td>
+                }
+            </tr>
+        }
+    </table>
+</body>

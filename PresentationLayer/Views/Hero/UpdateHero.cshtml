@@ -1,0 +1,30 @@
+﻿@model PresentationLayer.Models.HeroViewModel
+@{
+    ViewBag.Title = "UpdateHero";
+}
+<body class="patternBG">
+    @using (Html.BeginForm("UpdateHero", "Hero", FormMethod.Post))
+    {
+        <div class="FormTable updateTable">
+            @Html.HiddenFor(m => m.SingleHero.HeroID)
+
+            @if ((int)Session["RoleID"] == 2 || (int)Session["RoleID"] == 3)
+            {
+                <br />
+                <br />
+                <table>
+                    <tr>
+                        <td>@Html.LabelFor(m => m.SingleHero.HeroName)</td>
+                        <td>@Html.TextBoxFor(m => m.SingleHero.HeroName, htmlAttributes: new { @class = "form-control" })</td>
+                    </tr>
+                    <tr>
+                        <td>@Html.LabelFor(m => m.SingleHero.HeroType)</td>
+                        <td>@Html.TextBoxFor(m => m.SingleHero.HeroType, htmlAttributes: new { @class = "form-control" })</td>
+                    </tr>
+                </table>
+            }
+            <br />
+            <input class="submitButton btn registerBtn submitRegisterButton" type="submit" value="Update" />
+        </div>
+    }
+</body>

@@ -1,0 +1,270 @@
+Time: 6/12/2018 1:54:38 PM
+--------------------------------------------
+Message: Procedure or function 'sp_HeroesTable_UpdateHero' expects parameter '@HeroID', which was not supplied.
+StackTrace:    at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   at System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   at System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   at DataAccessLayer.HeroDataAccess.UpdateHero(HeroesDAO userToUpdate) in C:\Users\admin2\source\repos\OverwatchStatTracker\DataAccessLayer\HeroDataAccess.cs:line 112
+Message: .Net SqlClient Data Provider
+Message: Void OnError(System.Data.SqlClient.SqlException, Boolean, System.Action`1[System.Action])
+--------------------------------------------
+
+Time: 6/12/2018 2:15:10 PM
+--------------------------------------------
+Message: Procedure or function 'sp_HeroesTable_AddHero' expects parameter '@HeroType', which was not supplied.
+StackTrace:    at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   at System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   at System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   at DataAccessLayer.HeroDataAccess.AddHero(HeroesDAO heroToAdd) in C:\Users\admin2\source\repos\OverwatchStatTracker\DataAccessLayer\HeroDataAccess.cs:line 40
+Message: .Net SqlClient Data Provider
+Message: Void OnError(System.Data.SqlClient.SqlException, Boolean, System.Action`1[System.Action])
+--------------------------------------------
+
+Time: 6/12/2018 2:16:24 PM
+--------------------------------------------
+Message: Procedure or function 'sp_HeroesTable_AddHero' expects parameter '@HeroType', which was not supplied.
+StackTrace:    at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   at System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   at System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   at DataAccessLayer.HeroDataAccess.AddHero(HeroesDAO heroToAdd) in C:\Users\admin2\source\repos\OverwatchStatTracker\DataAccessLayer\HeroDataAccess.cs:line 40
+Message: .Net SqlClient Data Provider
+Message: Void OnError(System.Data.SqlClient.SqlException, Boolean, System.Action`1[System.Action])
+--------------------------------------------
+
+Time: 6/12/2018 2:28:30 PM
+--------------------------------------------
+Message: Procedure or function 'sp_HeroesTable_UpdateHero' expects parameter '@HeroID', which was not supplied.
+StackTrace:    at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   at System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   at System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   at DataAccessLayer.HeroDataAccess.UpdateHero(HeroesDAO userToUpdate) in C:\Users\admin2\source\repos\OverwatchStatTracker\DataAccessLayer\HeroDataAccess.cs:line 113
+Message: .Net SqlClient Data Provider
+Message: Void OnError(System.Data.SqlClient.SqlException, Boolean, System.Action`1[System.Action])
+--------------------------------------------Time: 6/14/2018 3:17:28 PM
+--------------------------------------------
+Message: Unable to cast object of type 'System.Int32' to type 'System.String'.
+StackTrace:    at System.Data.SqlClient.SqlBuffer.get_String()
+   at System.Data.SqlClient.SqlDataReader.GetString(Int32 i)
+   at DataAccessLayer.UserDataAccess.GetUserByID(Int32 UserID) in C:\Users\admin2\source\repos\OverwatchStatTracker\DataAccessLayer\UserDataAccess.cs:line 224
+Message: System.Data
+Message: System.String get_String()
+--------------------------------------------
+
+Time: 6/14/2018 3:20:28 PM
+--------------------------------------------
+Message: Unable to cast object of type 'System.Int32' to type 'System.String'.
+StackTrace:    at System.Data.SqlClient.SqlBuffer.get_String()
+   at System.Data.SqlClient.SqlDataReader.GetString(Int32 i)
+   at DataAccessLayer.UserDataAccess.GetUserByID(Int32 UserID) in C:\Users\admin2\source\repos\OverwatchStatTracker\DataAccessLayer\UserDataAccess.cs:line 224
+Message: System.Data
+Message: System.String get_String()
+--------------------------------------------
+
+Time: 6/14/2018 3:25:01 PM
+--------------------------------------------
+Message: Unable to cast object of type 'System.Int32' to type 'System.String'.
+StackTrace:    at System.Data.SqlClient.SqlBuffer.get_String()
+   at System.Data.SqlClient.SqlDataReader.GetString(Int32 i)
+   at DataAccessLayer.UserDataAccess.GetUserByID(Int32 UserID) in C:\Users\admin2\source\repos\OverwatchStatTracker\DataAccessLayer\UserDataAccess.cs:line 224
+Message: System.Data
+Message: System.String get_String()
+--------------------------------------------
+
+Time: 6/14/2018 3:27:50 PM
+--------------------------------------------
+Message: Unable to cast object of type 'System.Int32' to type 'System.String'.
+StackTrace:    at System.Data.SqlClient.SqlBuffer.get_String()
+   at System.Data.SqlClient.SqlDataReader.GetString(Int32 i)
+   at DataAccessLayer.UserDataAccess.GetUserByID(Int32 UserID) in C:\Users\admin2\source\repos\OverwatchStatTracker\DataAccessLayer\UserDataAccess.cs:line 224
+Message: System.Data
+Message: System.String get_String()
+--------------------------------------------
+
+Time: 6/14/2018 3:31:56 PM
+--------------------------------------------
+Message: Unable to cast object of type 'System.Int32' to type 'System.String'.
+StackTrace:    at System.Data.SqlClient.SqlBuffer.get_String()
+   at System.Data.SqlClient.SqlDataReader.GetString(Int32 i)
+   at DataAccessLayer.UserDataAccess.GetUserByID(Int32 UserID) in C:\Users\admin2\source\repos\OverwatchStatTracker\DataAccessLayer\UserDataAccess.cs:line 224
+Message: System.Data
+Message: System.String get_String()
+--------------------------------------------
+
+Time: 6/14/2018 3:32:04 PM
+--------------------------------------------
+Message: Unable to cast object of type 'System.Int32' to type 'System.String'.
+StackTrace:    at System.Data.SqlClient.SqlBuffer.get_String()
+   at System.Data.SqlClient.SqlDataReader.GetString(Int32 i)
+   at DataAccessLayer.UserDataAccess.GetUserByID(Int32 UserID) in C:\Users\admin2\source\repos\OverwatchStatTracker\DataAccessLayer\UserDataAccess.cs:line 224
+Message: System.Data
+Message: System.String get_String()
+--------------------------------------------
+
+Time: 6/14/2018 3:32:06 PM
+--------------------------------------------
+Message: Unable to cast object of type 'System.Int32' to type 'System.String'.
+StackTrace:    at System.Data.SqlClient.SqlBuffer.get_String()
+   at System.Data.SqlClient.SqlDataReader.GetString(Int32 i)
+   at DataAccessLayer.UserDataAccess.GetUserByID(Int32 UserID) in C:\Users\admin2\source\repos\OverwatchStatTracker\DataAccessLayer\UserDataAccess.cs:line 224
+Message: System.Data
+Message: System.String get_String()
+--------------------------------------------
+
+Time: 6/14/2018 3:32:13 PM
+--------------------------------------------
+Message: Unable to cast object of type 'System.Int32' to type 'System.String'.
+StackTrace:    at System.Data.SqlClient.SqlBuffer.get_String()
+   at System.Data.SqlClient.SqlDataReader.GetString(Int32 i)
+   at DataAccessLayer.UserDataAccess.GetUserByID(Int32 UserID) in C:\Users\admin2\source\repos\OverwatchStatTracker\DataAccessLayer\UserDataAccess.cs:line 224
+Message: System.Data
+Message: System.String get_String()
+--------------------------------------------
+
+Time: 6/14/2018 3:32:17 PM
+--------------------------------------------
+Message: Unable to cast object of type 'System.Int32' to type 'System.String'.
+StackTrace:    at System.Data.SqlClient.SqlBuffer.get_String()
+   at System.Data.SqlClient.SqlDataReader.GetString(Int32 i)
+   at DataAccessLayer.UserDataAccess.GetUserByID(Int32 UserID) in C:\Users\admin2\source\repos\OverwatchStatTracker\DataAccessLayer\UserDataAccess.cs:line 224
+Message: System.Data
+Message: System.String get_String()
+--------------------------------------------
+
+Time: 6/14/2018 3:32:37 PM
+--------------------------------------------
+Message: Unable to cast object of type 'System.Int32' to type 'System.String'.
+StackTrace:    at System.Data.SqlClient.SqlBuffer.get_String()
+   at System.Data.SqlClient.SqlDataReader.GetString(Int32 i)
+   at DataAccessLayer.UserDataAccess.GetUserByID(Int32 UserID) in C:\Users\admin2\source\repos\OverwatchStatTracker\DataAccessLayer\UserDataAccess.cs:line 224
+Message: System.Data
+Message: System.String get_String()
+--------------------------------------------
+
+Time: 6/14/2018 3:34:19 PM
+--------------------------------------------
+Message: Unable to cast object of type 'System.Int32' to type 'System.String'.
+StackTrace:    at System.Data.SqlClient.SqlBuffer.get_String()
+   at System.Data.SqlClient.SqlDataReader.GetString(Int32 i)
+   at DataAccessLayer.UserDataAccess.GetUserByID(Int32 UserID) in C:\Users\admin2\source\repos\OverwatchStatTracker\DataAccessLayer\UserDataAccess.cs:line 224
+Message: System.Data
+Message: System.String get_String()
+--------------------------------------------
+
+Time: 6/14/2018 3:34:25 PM
+--------------------------------------------
+Message: Unable to cast object of type 'System.Int32' to type 'System.String'.
+StackTrace:    at System.Data.SqlClient.SqlBuffer.get_String()
+   at System.Data.SqlClient.SqlDataReader.GetString(Int32 i)
+   at DataAccessLayer.UserDataAccess.GetUserByID(Int32 UserID) in C:\Users\admin2\source\repos\OverwatchStatTracker\DataAccessLayer\UserDataAccess.cs:line 224
+Message: System.Data
+Message: System.String get_String()
+--------------------------------------------
+
+Time: 6/14/2018 3:34:27 PM
+--------------------------------------------
+Message: Unable to cast object of type 'System.Int32' to type 'System.String'.
+StackTrace:    at System.Data.SqlClient.SqlBuffer.get_String()
+   at System.Data.SqlClient.SqlDataReader.GetString(Int32 i)
+   at DataAccessLayer.UserDataAccess.GetUserByID(Int32 UserID) in C:\Users\admin2\source\repos\OverwatchStatTracker\DataAccessLayer\UserDataAccess.cs:line 224
+Message: System.Data
+Message: System.String get_String()
+--------------------------------------------
+
+Time: 6/15/2018 2:53:45 PM
+--------------------------------------------
+Message: The UPDATE statement conflicted with the FOREIGN KEY constraint "FK__UsersTabl__HeroI__6442E2C9". The conflict occurred in database "OverwatchStatTracker", table "dbo.HeroesTable", column 'HeroID'.
+The statement has been terminated.
+StackTrace:    at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   at System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   at System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   at DataAccessLayer.UserDataAccess.UpdateUsersFavoriteHero(Int32 UserID, Int32 HeroID) in C:\Users\admin2\source\repos\OverwatchStatTracker\DataAccessLayer\UserDataAccess.cs:line 304
+Message: .Net SqlClient Data Provider
+Message: Void OnError(System.Data.SqlClient.SqlException, Boolean, System.Action`1[System.Action])
+--------------------------------------------
+
+Time: 6/15/2018 3:28:16 PM
+--------------------------------------------
+Message: Procedure or function 'sp_UsersTable_GetUserByUsername' expects parameter '@Username', which was not supplied.
+StackTrace:    at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteReader()
+   at DataAccessLayer.UserDataAccess.GetUserByUsername(String Username) in C:\Users\admin2\source\repos\OverwatchStatTracker\DataAccessLayer\UserDataAccess.cs:line 259
+Message: .Net SqlClient Data Provider
+Message: Void OnError(System.Data.SqlClient.SqlException, Boolean, System.Action`1[System.Action])
+--------------------------------------------
+
+Time: 6/15/2018 3:29:56 PM
+--------------------------------------------
+Message: The UPDATE statement conflicted with the FOREIGN KEY constraint "FK__UsersTabl__HeroI__6442E2C9". The conflict occurred in database "OverwatchStatTracker", table "dbo.HeroesTable", column 'HeroID'.
+The statement has been terminated.
+StackTrace:    at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   at System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   at System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   at DataAccessLayer.UserDataAccess.UpdateUsersFavoriteHero(Int32 UserID, Int32 HeroID) in C:\Users\admin2\source\repos\OverwatchStatTracker\DataAccessLayer\UserDataAccess.cs:line 304
+Message: .Net SqlClient Data Provider
+Message: Void OnError(System.Data.SqlClient.SqlException, Boolean, System.Action`1[System.Action])
+--------------------------------------------
+
+Time: 6/15/2018 4:10:57 PM
+--------------------------------------------
+Message: The UPDATE statement conflicted with the FOREIGN KEY constraint "FK__UsersTabl__HeroI__6442E2C9". The conflict occurred in database "OverwatchStatTracker", table "dbo.HeroesTable", column 'HeroID'.
+The statement has been terminated.
+StackTrace:    at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   at System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   at System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   at DataAccessLayer.UserDataAccess.UpdateUsersFavoriteHero(Int32 UserID, Int32 HeroID) in C:\Users\admin2\source\repos\OverwatchStatTracker\DataAccessLayer\UserDataAccess.cs:line 304
+Message: .Net SqlClient Data Provider
+Message: Void OnError(System.Data.SqlClient.SqlException, Boolean, System.Action`1[System.Action])
+--------------------------------------------
+

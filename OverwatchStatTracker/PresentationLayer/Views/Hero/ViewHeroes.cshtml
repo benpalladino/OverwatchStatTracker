@@ -1,0 +1,67 @@
+﻿@model PresentationLayer.Models.HeroViewModel
+@using PresentationLayer.Models
+@{
+    ViewBag.Title = "ViewHeroes";
+}
+
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title></title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+</head>
+<body class="patternBG">
+
+    @*INFORMATION FROM THE HEROES TABLE*@
+    <h2 class="h2Styles">OVERWATCH HEROES</h2>
+    <table class="table tableTDStyles">
+        <tr>
+            <th>Hero Name</th>
+            <th></th>
+            <th>Hero Type</th>
+            <th></th>
+            <th></th>
+            @if ((int)Session["RoleID"] == 3)
+            {
+            <th>@Html.ActionLink(" ", "AddHero", "Hero", htmlAttributes: new { @class = "btn btn-success btn-Custom fas fa-plus" })</th>
+            }
+            else {
+            <th></th>
+            }
+        </tr>
+
+        @*DISPLAYS EVERY HERO IN THE TABLE*@
+        @foreach (Hero SingleHero in Model.HeroList)
+        {
+            if (SingleHero.HeroID != 1)
+            {
+                <tr class="tableRows backgroundShapes">
+                    <td>@Html.DisplayFor(m => SingleHero.HeroName)</td>
+                    <td></td>
+                    <td>@Html.DisplayFor(m => SingleHero.HeroType)</td>
+                    <td></td>
+                    @if (Session["RoleID"] == null)
+                    {
+                    }
+                    @*WILL ONLY DISPLAY THE LOGGED IN USER'S INFORMATION*@
+                    @if ((int)Session["RoleID"] == 1 && (string)Session["HeroName"] == SingleHero.HeroName)
+                    {
+                        <td>@Html.ActionLink(" ", "UpdateHero", "Hero", routeValues: new { HeroID = SingleHero.HeroID }, htmlAttributes: new { @class = "btn btn-primary btn-Custom fas fa-edit" })</td>
+                    }
+                    @*ALLOWS THE MODERATOR ROLE TO UPDATE AND VIEW ALL USERS*@
+                    @if ((int)Session["RoleID"] == 2)
+                    {
+                        <td>@Html.ActionLink(" ", "UpdateHero", "Hero", routeValues: new { HeroID = SingleHero.HeroID }, htmlAttributes: new { @class = "btn btn-primary btn-Custom fas fa-edit" })</td>
+                    }
+
+                    @*GIVES ADMINS FULL CONTROL OVER USERS INCLUDING ADD, UPDATE, AND DELETE*@
+                    @if ((int)Session["RoleID"] == 3)
+                    {
+                        <td>@Html.ActionLink(" ", "UpdateHero", "Hero", routeValues: new { HeroID = SingleHero.HeroID }, htmlAttributes: new { @class = "btn btn-primary btn-Custom fas fa-edit" })</td>
+                        <td>@Html.ActionLink(" ", "DeleteHero", "Hero", routeValues: new { HeroID = SingleHero.HeroID }, htmlAttributes: new { @class = "btn btn-danger btn-Custom fas fa-trash" })</td>
+                    }
+                </tr>
+            }
+        }
+    </table>
+</body>
+

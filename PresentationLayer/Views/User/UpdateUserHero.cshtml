@@ -1,0 +1,26 @@
+﻿@model PresentationLayer.Models.UserViewModel
+@{
+    ViewBag.Title = "UpdateUserHero";
+}
+<body class="patternBG">
+    @using (Html.BeginForm("UpdateUserHero", "User", FormMethod.Post))
+    {
+        <div class="FormTable updateTable">
+            <div class="form-group registerForm">
+                @Html.HiddenFor(m => m.SingleUser.UserID)
+                <section class="formBackgroundRegister">
+                    <div>
+                        @Html.LabelFor(m => m.SingleUser.HeroName)
+                        @Html.TextBoxFor(m => m.SingleUser.HeroName, htmlAttributes: new { @class = "form-control" })
+                    </div>
+                    <br />
+                    <div>
+                        <input class="submitButton btn registerBtn submitRegisterButton" type="submit" value="Confirm" />
+                    </div>
+                    <br />
+                </section>
+            </div>
+            <br />
+        </div>
+    }
+</body>

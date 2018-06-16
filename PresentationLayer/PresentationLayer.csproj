@@ -92,24 +92,61 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Site.css" />
+    <Content Include="Content\Styles.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <Content Include="Images\Ana.png" />
+    <Content Include="Images\Bastion.png" />
+    <Content Include="Images\Doomfist.png" />
+    <Content Include="Images\Dva.png" />
+    <Content Include="Images\Genji.png" />
+    <Content Include="Images\Hanzo.png" />
+    <Content Include="Images\Junkrat.png" />
+    <Content Include="Images\Lucio.png" />
+    <Content Include="Images\McCree.png" />
+    <Content Include="Images\Mei.png" />
+    <Content Include="Images\Mercy.png" />
+    <Content Include="Images\Moira.png" />
+    <Content Include="Images\Orisa.png" />
+    <Content Include="Images\OverwatchMenuLogo.jpg" />
+    <Content Include="Images\Pharah.png" />
+    <Content Include="Images\Reaper.png" />
+    <Content Include="Images\Reinhardt.png" />
+    <Content Include="Images\Roadhog.png" />
+    <Content Include="Images\Soldier76.png" />
+    <Content Include="Images\Sombra.png" />
+    <Content Include="Images\Symmetra.png" />
+    <Content Include="Images\Torbjorn.png" />
+    <Content Include="Images\Tracer.png" />
+    <Content Include="Images\Widowmaker.png" />
+    <Content Include="Images\Winston.png" />
+    <Content Include="Images\Zarya.png" />
+    <Content Include="Images\Zenyatta.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
+    <Content Include="Scripts\jquery-LoginPage.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Videos\OverwatchAnimation.mp4" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\HeroController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\TeamController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Hero.cs" />
+    <Compile Include="Models\HeroViewModel.cs" />
     <Compile Include="Models\Mapper.cs" />
+    <Compile Include="Models\Stats.cs" />
+    <Compile Include="Models\Team.cs" />
+    <Compile Include="Models\TeamViewModel.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\UserViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -127,7 +164,18 @@
     <Content Include="Views\User\Login.cshtml" />
     <Content Include="Views\User\Register.cshtml" />
     <Content Include="Views\User\Leaderboards.cshtml" />
+    <Content Include="Views\User\ViewUsers.cshtml" />
+    <Content Include="Views\User\UpdateUsers.cshtml" />
+    <Content Include="Views\User\AdminPanel.cshtml" />
+    <Content Include="Views\Team\ViewTeams.cshtml" />
+    <Content Include="Views\Team\AddTeam.cshtml" />
+    <Content Include="Views\Team\UpdateTeam.cshtml" />
+    <Content Include="Views\Hero\AddHero.cshtml" />
+    <Content Include="Views\Hero\UpdateHero.cshtml" />
+    <Content Include="Views\User\UpdateStats.cshtml" />
     <Content Include="Views\User\Profile.cshtml" />
+    <Content Include="Views\User\UpdateUserHero.cshtml" />
+    <Content Include="Views\Hero\ViewHeroes.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

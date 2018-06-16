@@ -1,0 +1,62 @@
+﻿@model PresentationLayer.Models.UserViewModel
+@{
+    ViewBag.Title = "UpdateUsers";
+}
+<body class="patternBG">
+
+    @using (Html.BeginForm("UpdateUsers", "User", FormMethod.Post))
+    {
+        <div class="FormTable">
+            @Html.HiddenFor(m => m.SingleUser.UserID)
+
+            @if ((int)Session["RoleID"] == 3)
+            {
+                <br />
+                <br />
+                <table>
+                    <tr>
+                        <td>@Html.LabelFor(m => m.SingleUser.Username)</td>
+                        <td>@Html.TextBoxFor(m => m.SingleUser.Username, htmlAttributes: new { @class = "form-control" })</td>
+                    </tr>
+                    <tr>
+                        <td>@Html.LabelFor(m => m.SingleUser.Email)</td>
+                        <td>@Html.TextBoxFor(m => m.SingleUser.Email, htmlAttributes: new { @class = "form-control" })</td>
+                    </tr>
+                    <tr>
+                        <td>@Html.LabelFor(m => m.SingleUser.BattleNet)</td>
+                        <td>@Html.TextBoxFor(m => m.SingleUser.BattleNet, htmlAttributes: new { @class = "form-control" })</td>
+                    </tr>
+                    <tr>
+                        <td>@Html.LabelFor(m => m.SingleUser.TeamName)</td>
+                        <td>@Html.TextBoxFor(m => m.SingleUser.TeamName, htmlAttributes: new { @class = "form-control" })</td>
+                    </tr>
+                </table>
+            }
+            @if ((int)Session["RoleID"] != 3)
+            {
+                <br />
+                <br />
+                <table>
+                    <tr>
+                        <td>@Html.LabelFor(m => m.SingleUser.Username)</td>
+                        <td>@Html.TextBoxFor(m => m.SingleUser.Username, htmlAttributes: new { @class = "form-control" })</td>
+                    </tr>
+                    <tr>
+                        <td>@Html.LabelFor(m => m.SingleUser.Email)</td>
+                        <td>@Html.TextBoxFor(m => m.SingleUser.Email, htmlAttributes: new { @class = "form-control" })</td>
+                    </tr>
+                    <tr>
+                        <td>@Html.LabelFor(m => m.SingleUser.BattleNet)</td>
+                        <td>@Html.TextBoxFor(m => m.SingleUser.BattleNet, htmlAttributes: new { @class = "form-control" })</td>
+                    </tr>
+                    <tr>
+                        <td>@Html.LabelFor(m => m.SingleUser.TeamName)</td>
+                        <td>@Html.TextBoxFor(m => m.SingleUser.TeamName, htmlAttributes: new { @class = "form-control" })</td>
+                    </tr>
+                </table>
+            }
+            <br />
+            <input class="submitButton btn registerBtn submitRegisterButton" type="submit" value="Update" />
+        </div>
+    }
+</body>

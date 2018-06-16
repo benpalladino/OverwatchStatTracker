@@ -1,0 +1,25 @@
+﻿@model PresentationLayer.Models.TeamViewModel
+
+
+@using (Html.BeginForm("AddTeam", "Team", FormMethod.Post))
+{
+    <body class="patternBG">
+        <div class="FormTable">
+            <div class="form-group registerForm">
+                <section class="formBackgroundRegister">
+                    <div>
+                        @Html.ValidationMessageFor(m => m.SingleTeam.TeamName)
+                        @Html.LabelFor(m => m.SingleTeam.TeamName)
+                        @Html.TextBoxFor(m => m.SingleTeam.TeamName, htmlAttributes: new { @class = "form-control" })
+                    </div>
+                    <br />
+                    <div>
+                        <input class="submitButton btn registerBtn submitRegisterButton" type="submit" value="Confirm" />
+                    </div>
+                    <br />
+                </section>
+            </div>
+            <br />
+        </div>
+    </body>
+}

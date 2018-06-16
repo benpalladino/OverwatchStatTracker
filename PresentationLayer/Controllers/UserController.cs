@@ -1,10 +1,12 @@
-﻿using System;
+﻿// AUTHOR - BEN PALLADINO - ONSHORE OUTSOURCING
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using DataAccessLayer;
 using PresentationLayer.Models;
+using DataAccessLayer.DataObjects;
 using BusinessLogicLayer;
 
 namespace PresentationLayer.Controllers
@@ -12,13 +14,136 @@ namespace PresentationLayer.Controllers
     public class UserController : Controller
     {
         static UserDataAccess UserDataAccess = new UserDataAccess();
+        static HeroDataAccess HeroDataAccess = new HeroDataAccess();
+        static LeaderboardLogic logicLayer = new LeaderboardLogic();
         static Mapper Mapper = new Mapper();
         static PasswordLogic PasswordLogic = new PasswordLogic();
+
+        //ADMIN PANEL ACTION RESULTS
+        public ActionResult AdminPanel()
+        {
+            if (Session["RoleID"] != null)
+            {
+
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Login");
+            }
+        }
+
+
+        //PROFILE ACTION RESULT
+        public ActionResult Profile()
+        {
+            if (Session["RoleID"] != null)
+            {
+                UserViewModel viewModel = new UserViewModel();
+                viewModel.SingleUser = Mapper.Map(UserDataAccess.GetUserByID((int)Session["UserID"]));
+                viewModel.SingleUser = Mapper.LogicMap(logicLayer.GetUserWL(Mapper.LogicMap(viewModel.SingleUser)));
+                return View(viewModel);
+            }
+            else
+            {
+                return RedirectToAction("Login");
+            }
+        }
+
+        //LEADERBOARDS ACTION RESULTS
+        public ActionResult Leaderboards()
+        {
+            if (Session["RoleID"] != null)
+            {
+                UserViewModel viewModel = new UserViewModel();
+                viewModel.UserList = Mapper.Map(UserDataAccess.GetAllUsers());
+                viewModel.UserList = Mapper.LogicMap(logicLayer.GetUserWL(Mapper.LogicMap(viewModel.UserList)));
+                return View(viewModel);
+            }
+            else
+            {
+                return RedirectToAction("Login");
+            }
+        }
+
+        //UPDATE USERS FAVORITE HERO
+        [HttpGet]
+        public ActionResult UpdateUserHero(int UserID)
+        {
+            if (Session["RoleID"] != null)
+            {
+                UserViewModel userViewModel = new UserViewModel();
+                userViewModel.SingleUser = Mapper.Map(UserDataAccess.GetUserByID(UserID));
+                return View(userViewModel);
+            }
+            else
+            {
+                return RedirectToAction("Login");
+            }
+        }
+
+        [HttpPost]
+        public ActionResult UpdateUserHero(UserViewModel userViewModel)
+        {
+            if (Session["RoleID"] != null)
+            {
+                if (userViewModel.SingleUser.HeroName != null)
+                {
+                    UserDataAccess.UpdateUsersFavoriteHero(userViewModel.SingleUser.UserID, userViewModel.SingleUser.HeroName);
+                    return RedirectToAction("Profile");
+                }
+                else
+                {
+                    return RedirectToAction("Profile");
+                }
+            }
+            else
+            {
+                return RedirectToAction("Login");
+            }
+        }
+
+        //UPDATE STATS ACTION RESULTS
+        [HttpGet]
+        public ActionResult UpdateStats()
+        {
+            if (Session["RoleID"] != null)
+            {
+                UserViewModel userViewModel = new UserViewModel();
+                userViewModel.SingleUser = Mapper.Map(UserDataAccess.GetUserByID((int)Session["UserID"]));
+                return View(userViewModel);
+            }
+            else
+            {
+                return RedirectToAction("Login");
+            }
+        }
+
+        [HttpPost]
+        public ActionResult UpdateStats(UserViewModel viewModel)
+        {
+            if (Session["RoleID"] != null)
+            {
+                UserDataAccess.UpdateUserStats(Mapper.Map(viewModel.SingleUser));
+                return RedirectToAction("Profile");
+            }
+            else
+            {
+                return RedirectToAction("Login");
+            }
+        }
 
         //GET USER
         public ActionResult Index()
         {
-            return View();
+            if (Session["RoleID"] != null)
+            {
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Login");
+            }
         }
 
         [HttpGet]
@@ -37,46 +162,99 @@ namespace PresentationLayer.Controllers
                 viewModel.SingleUser.RoleID = 1;
                 viewModel.SingleUser.TeamID = 1;
                 viewModel.SingleUser.HeroID = 1;
+
                 UserDataAccess.AddUser(Mapper.Map(viewModel.SingleUser));
             }
-            return View();
+            return RedirectToAction("Login", "User");
         }
 
+        //VIEW USERS
         public ActionResult ViewUsers()
         {
-            UserViewModel viewModel = new UserViewModel();
-            viewModel.UserList = Mapper.Map(UserDataAccess.GetAllUsers());
-            return View(viewModel);
+            if (Session["RoleID"] != null)
+            {
+                UserViewModel viewModel = new UserViewModel();
+                viewModel.UserList = Mapper.Map(UserDataAccess.GetAllUsers());
+                return View(viewModel);
+            }
+            else
+            {
+                return RedirectToAction("Login");
+            }
         }
 
         //UPDATE USER
         [HttpGet]
-        public ActionResult UpdateUser(int UserID)
+        public ActionResult UpdateUsers(int UserID)
         {
-            UserViewModel userViewModel = new UserViewModel();
-            userViewModel.SingleUser = Mapper.Map(UserDataAccess.GetUserByID(UserID));
-            return View(userViewModel);
+            if (Session["RoleID"] != null)
+            {
+                UserViewModel userViewModel = new UserViewModel();
+                userViewModel.SingleUser = Mapper.Map(UserDataAccess.GetUserByID(UserID));
+                return View(userViewModel);
+            }
+            else
+            {
+                return RedirectToAction("Login");
+            }
         }
 
         [HttpPost]
-        public ActionResult UpdateUser(UserViewModel userViewModel)
+        public ActionResult UpdateUsers(UserViewModel userViewModel)
         {
-            UserDataAccess.UpdateUser(Mapper.Map(userViewModel.SingleUser));
-            return RedirectToAction("ViewUsers");
+            if (Session["RoleID"] != null)
+            {
+                if(userViewModel.SingleUser.RoleTitle.ToUpper() == "USER")
+                {
+                    userViewModel.SingleUser.RoleID = 1;
+                    UserDataAccess.UpdateUsers(Mapper.Map(userViewModel.SingleUser));
+                }
+                else if (userViewModel.SingleUser.RoleTitle.ToUpper() == "MODERATOR" || userViewModel.SingleUser.RoleTitle.ToUpper() == "MOD")
+                {
+                    userViewModel.SingleUser.RoleID = 2;
+                    UserDataAccess.UpdateUsers(Mapper.Map(userViewModel.SingleUser));
+                }
+                else if (userViewModel.SingleUser.RoleTitle.ToUpper() == "ADMIN")
+                {
+                    userViewModel.SingleUser.RoleID = 3;
+                    UserDataAccess.UpdateUsers(Mapper.Map(userViewModel.SingleUser));
+                }
+
+                UserDataAccess.UpdateUsers(Mapper.Map(userViewModel.SingleUser));
+                return RedirectToAction("ViewUsers");
+            }
+            else
+            {
+                return RedirectToAction("Login");
+            }
         }
 
         //DELETE USER
-        public ActionResult DeleteUser(int UserID)
+        public ActionResult DeleteUser(int UserID, int StatsID)
         {
-            UserDataAccess.DeleteUser(UserID);
-            return RedirectToAction("ViewUsers");
+            if (Session["RoleID"] != null)
+            {
+                UserDataAccess.DeleteUser(UserID, StatsID);
+                return RedirectToAction("ViewUsers");
+            }
+            else
+            {
+                return RedirectToAction("Login");
+            }
         }
 
         //LOGOUT USER
         public ActionResult Logout()
         {
-            Session.Abandon();
-            return RedirectToAction("Login");
+            if (Session["RoleID"] != null)
+            {
+                Session.Abandon();
+                return RedirectToAction("Login");
+            }
+            else
+            {
+                return RedirectToAction("Login");
+            }
         }
 
         //LOGIN USER
@@ -97,9 +275,9 @@ namespace PresentationLayer.Controllers
                 if (isValid)
                 {
                     Session["UserID"] = validateUser.UserID;
-                    Session["Username"] = validateUser.Username;
+                    Session["Username"] = validateUser.Username.ToUpper();
                     Session["RoleID"] = validateUser.RoleID;
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Profile", validateUser);
                 }
                 else
                 {
@@ -111,7 +289,6 @@ namespace PresentationLayer.Controllers
             {
                 return View();
             }
-
         }
     }
 }

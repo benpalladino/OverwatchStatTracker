@@ -1,0 +1,18 @@
+﻿@*AUTHOR - BEN PALLADINO - ONSHORE OUTSOURCING*@
+@model PresentationLayer.Models.UserViewModel
+@using PresentationLayer.Models
+@{
+    ViewBag.Title = "AdminPanel";
+}
+<body class="patternBG">
+    @*NAMES FOR EACH COLUMN IN THE TABLE*@
+
+    <h2 class="h2Styles">Admin Panel</h2>
+    <table class="table tableTDStyles">
+        <tr class="tableRows backgroundShapes">
+            <td>@Html.ActionLink("Users", "ViewUsers", "User", htmlAttributes: new { @class = "btn btn-primary btn-Custom" })</td>
+            <td>@Html.ActionLink("Teams", "ViewTeams", "Team", new { area = " " }, htmlAttributes: new { @class = "btn btn-primary btn-Custom" })</td>
+            <td>@Html.ActionLink("Heroes", "ViewHeroes", "Hero", new { area = " " }, htmlAttributes: new { @class = "btn btn-primary btn-Custom" })</td>
+        </tr>
+    </table>
+</body>

@@ -1,0 +1,66 @@
+﻿@*AUTHOR - BEN PALLADINO - ONSHORE OUTSOURCING*@
+@model PresentationLayer.Models.UserViewModel
+@using PresentationLayer.Models
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title></title>
+</head>
+<body>
+    @*INFORMATION FROM THE HEROES TABLE*@
+    <h2 class="h2Styles">OVERWATCH HEROES</h2>
+    <table class="table tableTDStyles">
+        <tr>
+            <th>Hero Name</th>
+            <th></th>
+            <th>Hero Type</th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+        </tr>
+
+        @*DISPLAYS EVERY HERO IN THE TABLE*@
+        @foreach (User singleUser in Model.UserList)
+        {
+            <tr class="tableRows backgroundShapes">
+                <td>@Html.DisplayFor(m => singleUser.HeroName)</td>
+                <td></td>
+                <td>@Html.DisplayFor(m => singleUser.HeroType)</td>
+                <td></td>
+                <td></td>
+
+                @if (Session["RoleID"] == null)
+                {
+                }
+
+                @*WILL ONLY DISPLAY THE LOGGED IN USER'S INFORMATION*@
+                @if ((int)Session["RoleID"] == 1 && (string)Session["UserName"] == singleUser.Username)
+                {
+                    <td>@Html.ActionLink("Update", "UpdateUsers", "User", routeValues: new { UserID = singleUser.UserID }, htmlAttributes: new { @class = "btn btn-primary btn-Custom" })</td>
+
+                }
+                @*ALLOWS THE MODERATOR ROLE TO UPDATE AND VIEW ALL USERS*@
+                @if ((int)Session["RoleID"] == 2)
+                {
+                    <td>@Html.ActionLink("Update", "UpdateUsers", "User", routeValues: new { UserID = singleUser.UserID }, htmlAttributes: new { @class = "btn btn-primary btn-Custom" })</td>
+                }
+
+                @*GIVES ADMINS FULL CONTROL OVER USERS INCLUDING ADD, UPDATE, AND DELETE*@
+                @if ((int)Session["RoleID"] == 3)
+                {
+                    <td>@Html.ActionLink("Update", "UpdateUsers", "User", routeValues: new { UserID = singleUser.UserID }, htmlAttributes: new { @class = "btn btn-primary btn-Custom" })</td>
+                    <td>@Html.ActionLink("Delete", "DeleteUser", "User", routeValues: new { UserID = singleUser.UserID }, htmlAttributes: new { @class = "btn btn-danger btn-Custom" })</td>
+                }
+            </tr>
+        }
+    </table>
+</body>
+</html>

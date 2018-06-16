@@ -1,0 +1,56 @@
+﻿@model PresentationLayer.Models.TeamViewModel
+@using PresentationLayer.Models
+@{
+    ViewBag.Title = "ViewTeams";
+}
+@*INFORMATION FROM THE TEAMS TABLE*@
+<body>
+    <h2 class="h2Styles">CURRENT TEAMS</h2>
+    <table class="table tableTDStyles">
+        <tr>
+            <th>Team Name</th>
+            <th></th>
+            <th>Team Ranking</th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+        </tr>
+
+        @*DISPLAYS EVERY TEAM IN THE TEAMS TABLE*@
+        @foreach (Team singleTeam in Model.TeamList)
+        {
+            <tr class="tableRows backgroundShapes">
+                <td>@Html.DisplayFor(m => singleTeam.TeamName)</td>
+                <td></td>
+                <td>@Html.DisplayFor(m => singleTeam.TeamRanking)</td>
+                <td></td>
+                <td></td>
+
+                @if (Session["RoleID"] == null)
+                {
+                }
+
+                @*WILL ONLY DISPLAY A TEAM'S INFORMATION BASED ON THE USER'S PERMISSIONS*@
+
+                @if ((int)Session["RoleID"] == 1)
+                {
+                    <td>@Html.ActionLink("Update", "UpdateTeam", "Team", routeValues: new { Team = singleTeam.TeamID }, htmlAttributes: new { @class = "btn btn-primary btn-Custom" })</td>
+
+                }
+                @*ALLOWS THE MODERATOR ROLE TO UPDATE AND VIEW ALL TEAMS*@
+                @if ((int)Session["RoleID"] == 2)
+                {
+                    <td>@Html.ActionLink("Update", "UpdateTeam", "Team", routeValues: new { Team = singleTeam.TeamID }, htmlAttributes: new { @class = "btn btn-primary btn-Custom" })</td>
+                }
+
+                @*GIVES ADMINS FULL CONTROL OVER TEAMS INCLUDING ADD, UPDATE, AND DELETE*@
+                @if ((int)Session["RoleID"] == 3)
+                {
+                    <td>@Html.ActionLink("Update", "UpdateTeam", "Team", routeValues: new { Team = singleTeam.TeamID }, htmlAttributes: new { @class = "btn btn-primary btn-Custom" })</td>
+                    <td>@Html.ActionLink("Delete", "DeleteTeam", "Team", routeValues: new { Team = singleTeam.TeamID }, htmlAttributes: new { @class = "btn btn-danger btn-Custom" })</td>
+                }
+            </tr>
+        }
+    </table>
+</body>

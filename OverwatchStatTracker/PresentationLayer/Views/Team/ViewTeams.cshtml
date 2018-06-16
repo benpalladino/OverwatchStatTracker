@@ -1,0 +1,69 @@
+﻿@model PresentationLayer.Models.TeamViewModel
+@using PresentationLayer.Models
+@{
+    ViewBag.Title = "ViewTeams";
+}
+
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title></title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+</head>
+<body class="patternBG">
+    <h2 class="h2Styles">CURRENT TEAMS</h2>
+
+    <table class="table tableTDStyles">
+        <tr>
+            <th>Team Name</th>
+            <th></th>
+            <th>Team Ranking</th>
+            <th></th>
+            <th></th>
+            <th></th>
+            @if ((int)Session["RoleID"] == 3)
+            {
+            <th>@Html.ActionLink(" ", "AddTeam", "Team", htmlAttributes: new { @class = "btn btn-success btn-Custom fas fa-plus" })</th>
+            }
+            else {
+            <th></th>
+            }
+        </tr>
+        @*DISPLAYS EVERY TEAM IN THE TEAMS TABLE*@
+        @foreach (Team singleTeam in Model.TeamList)
+        {
+            if (singleTeam.TeamID != 1)
+            {
+                <tr class="tableRows backgroundShapes">
+                    <td>@Html.DisplayFor(m => singleTeam.TeamName)</td>
+                    <td></td>
+                    <td>@Html.DisplayFor(m => singleTeam.TeamRanking)</td>
+                    <td></td>
+                    <td></td>
+
+                    @if (Session["RoleID"] == null)
+                    {
+                    }
+
+                    @*WILL ONLY DISPLAY A TEAM'S INFORMATION BASED ON THE USER'S PERMISSIONS*@
+                    @if ((int)Session["RoleID"] == 1)
+                    {
+                        <td>@Html.ActionLink(" ", "UpdateTeam", "Team", routeValues: new { TeamID = singleTeam.TeamID }, htmlAttributes: new { @class = "btn btn-primary btn-Custom fas fa-edit" })</td>
+
+                    }
+                    @*ALLOWS THE MODERATOR ROLE TO UPDATE AND VIEW ALL TEAMS*@
+                    @if ((int)Session["RoleID"] == 2)
+                    {
+                        <td>@Html.ActionLink(" ", "UpdateTeam", "Team", routeValues: new { TeamID = singleTeam.TeamID }, htmlAttributes: new { @class = "btn btn-primary btn-Custom fas fa-edit" })</td>
+                    }
+
+                    @*GIVES ADMINS FULL CONTROL OVER TEAMS INCLUDING ADD, UPDATE, AND DELETE*@
+                    @if ((int)Session["RoleID"] == 3)
+                    {
+                        <td>@Html.ActionLink(" ", "UpdateTeam", "Team", routeValues: new { TeamID = singleTeam.TeamID }, htmlAttributes: new { @class = "btn btn-primary btn-Custom fas fa-edit" })</td>
+                        <td>@Html.ActionLink(" ", "DeleteTeam", "Team", routeValues: new { TeamID = singleTeam.TeamID }, htmlAttributes: new { @class = "btn btn-danger btn-Custom fas fa-trash" })</td>
+                    }
+                </tr>
+            }
+        }
+    </table>
+</body>

@@ -1,0 +1,26 @@
+﻿@model PresentationLayer.Models.HeroViewModel
+
+@using (Html.BeginForm("AddHero", "Hero", FormMethod.Post))
+{
+    <body class="patternBG">
+        <div class="FormTable">
+            <div class="form-group registerForm">
+                <section class="formBackgroundRegister">
+                    <div>
+                        @Html.ValidationMessageFor(m => m.SingleHero.HeroID)
+                        @Html.LabelFor(m => m.SingleHero.HeroName)
+                        @Html.TextBoxFor(m => m.SingleHero.HeroName, htmlAttributes: new { @class = "form-control" })
+                        @Html.LabelFor(m => m.SingleHero.HeroType)
+                        @Html.TextBoxFor(m => m.SingleHero.HeroType, htmlAttributes: new { @class = "form-control" })
+                    </div>
+                    <br />
+                    <div>
+                        <input class="submitButton btn registerBtn submitRegisterButton" type="submit" value="Confirm" />
+                    </div>
+                    <br />
+                </section>
+            </div>
+            <br />
+        </div>
+    </body>
+}

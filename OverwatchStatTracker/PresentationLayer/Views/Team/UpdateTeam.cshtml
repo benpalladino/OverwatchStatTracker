@@ -1,0 +1,30 @@
+﻿@model PresentationLayer.Models.TeamViewModel
+@{
+    ViewBag.Title = "UpdateTeam";
+}
+<body class="patternBG">
+    @using (Html.BeginForm("UpdateTeam", "Team", FormMethod.Post))
+    {
+        <div class="FormTable">
+            @Html.HiddenFor(m => m.SingleTeam.TeamID)
+
+            @if ((int)Session["RoleID"] == 2 || (int)Session["RoleID"] == 3)
+            {
+                <br />
+                <br />
+                <table>
+                    <tr>
+                        <td>@Html.LabelFor(m => m.SingleTeam.TeamName)</td>
+                        <td>@Html.TextBoxFor(m => m.SingleTeam.TeamName, htmlAttributes: new { @class = "form-control" })</td>
+                    </tr>
+                    <tr>
+                        <td>@Html.LabelFor(m => m.SingleTeam.TeamRanking)</td>
+                        <td>@Html.TextBoxFor(m => m.SingleTeam.TeamRanking, htmlAttributes: new { @class = "form-control" })</td>
+                    </tr>
+                </table>
+            }
+            <br />
+            <input class="submitButton btn registerBtn submitRegisterButton" type="submit" value="Update" />
+        </div>
+    }
+</body>

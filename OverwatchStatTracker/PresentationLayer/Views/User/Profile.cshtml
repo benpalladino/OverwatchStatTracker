@@ -1,0 +1,156 @@
+﻿@*AUTHOR - BEN PALLADINO - ONSHORE OUTSOURCING*@
+@model PresentationLayer.Models.UserViewModel
+@using PresentationLayer.Models
+@{
+    ViewBag.Title = "Profile";
+}
+<body class="patternBG">
+    <table class="table tableTDStyles">
+        <tr>
+            <th>Username</th>
+            <th></th>
+            <th>Hero Name</th>
+            <th></th>
+            <th>Hero Type</th>
+            <th></th>
+            <th>Hours Played</th>
+            <th></th>
+            <th>Wins</th>
+            <th></th>
+            <th>Losses</th>
+            <th></th>
+            <th>W/L</th>
+            <th></th>
+        </tr>
+
+        @if (this.Model.SingleUser.HeroName == "ANA")
+        {
+            <img src="~/Images/Ana.png" alt="Ana" />
+        }
+        else if (this.Model.SingleUser.HeroName == "BASTION")
+        {
+            <img src="~/Images/Bastion.png" alt="Genji" />
+        }
+        else if (this.Model.SingleUser.HeroName == "BRIGITTE")
+        {
+            <img src="~/Images/Ana.png" alt="Brigitte" />
+        }
+        else if (this.Model.SingleUser.HeroName == "DOOMFIST")
+        {
+            <img src="~/Images/Doomfist.png" alt="Doomfist" />
+        }
+        else if (this.Model.SingleUser.HeroName == "D.Va")
+        {
+            <img src="~/Images/Dva.png" alt="D.Va" />
+        }
+        else if (this.Model.SingleUser.HeroName == "GENJI")
+        {
+            <img src="~/Images/Genji.png" alt="Genji" />
+        }
+        else if (this.Model.SingleUser.HeroName == "HANZO")
+        {
+            <img src="~/Images/Hanzo.png" alt="Hanzo" />
+        }
+        else if (this.Model.SingleUser.HeroName == "Junkrat")
+        {
+            <img src="~/Images/Junkrat.png" alt="Junkrat" />
+        }
+        else if (this.Model.SingleUser.HeroName == "LUCIO")
+        {
+            <img src="~/Images/Lucio.png" alt="Lucio" />
+        }
+        else if (this.Model.SingleUser.HeroName == "MCCREE")
+        {
+            <img src="~/Images/McCree.png" alt="McCree" />
+        }
+        else if (this.Model.SingleUser.HeroName == "MEI")
+        {
+            <img src="~/Images/Mei.png" alt="Mei" />
+        }
+        else if (this.Model.SingleUser.HeroName == "MERCY")
+        {
+            <img src="~/Images/Mercy.png" alt="Mercy" />
+        }
+        else if (this.Model.SingleUser.HeroName == "MOIRA")
+        {
+            <img src="~/Images/Moira.png" alt="Moira" />
+        }
+        else if (this.Model.SingleUser.HeroName == "ORISA")
+        {
+            <img src="~/Images/Orisa.png" alt="Orisa" />
+        }
+        else if (this.Model.SingleUser.HeroName == "PHARAH")
+        {
+            <img src="~/Images/Pharah.png" alt="Pharah" />
+        }
+        else if (this.Model.SingleUser.HeroName == "REAPER")
+        {
+            <img src="~/Images/Reaper.png" alt="Reaper" />
+        }
+        else if (this.Model.SingleUser.HeroName == "REINHARDT")
+        {
+            <img src="~/Images/Reinhardt.png" alt="Reinhardt" />
+        }
+        else if (this.Model.SingleUser.HeroName == "ROADHOG")
+        {
+            <img src="~/Images/Roadhog.png" alt="Roadhog" />
+        }
+        else if (this.Model.SingleUser.HeroName == "SOLDIER 76")
+        {
+            <img src="~/Images/Soldier76.png" alt="Soldier 76" />
+        }
+        else if (this.Model.SingleUser.HeroName == "SOMBRA")
+        {
+            <img src="~/Images/Sombra.png" alt="Sombra" />
+        }
+        else if (this.Model.SingleUser.HeroName == "SYMMETRA")
+        {
+            <img src="~/Images/Symmetra.png" alt="Symmetra" />
+        }
+        else if (this.Model.SingleUser.HeroName == "TORBJORN")
+        {
+            <img src="~/Images/Torbjorn.png" alt="Torbjorn" />
+        }
+        else if (this.Model.SingleUser.HeroName == "TRACER")
+        {
+            <img src="~/Images/Tracer.png" alt="Tracer" />
+        }
+        else if (this.Model.SingleUser.HeroName == "WIDOWMAKER")
+        {
+            <img src="~/Images/Widowmaker.png" alt="Widowmaker" />
+        }
+        else if (this.Model.SingleUser.HeroName == "WINSTON")
+        {
+            <img src="~/Images/Winston.png" alt="Winston" />
+        }
+        else if (this.Model.SingleUser.HeroName == "ZARYA")
+        {
+            <img src="~/Images/Zarya.png" alt="Zarya" />
+        }
+        else if (this.Model.SingleUser.HeroName == "ZENYATTA")
+        {
+            <img src="~/Images/Zenyatta.png" alt="Zenyatta" />
+        }
+
+        <tr class="tableRows backgroundShapes">
+            @Html.HiddenFor(m => m.SingleUser.UserID)
+            <td>@Html.DisplayFor(m => m.SingleUser.Username)</td>
+            <td></td>
+            <td>@Html.DisplayFor(m => m.SingleUser.HeroName)</td>
+            <td></td>
+            <td>@Html.DisplayFor(m => m.SingleUser.HeroType)</td>
+            <td></td>
+            <td>@Html.DisplayFor(m => m.SingleUser.HoursPlayed)</td>
+            <td></td>
+            <td>@Html.DisplayFor(m => m.SingleUser.Wins)</td>
+            <td></td>
+            <td>@Html.DisplayFor(m => m.SingleUser.Losses)</td>
+            <td></td>
+            <td>@Html.DisplayFor(m => m.SingleUser.Ratio)</td>
+            <td></td>
+            <td>@Html.ActionLink("Change Hero", "UpdateUserHero", "User", routeValues: new { UserID = this.Model.SingleUser.UserID }, htmlAttributes: new { @class = "btn btn-primary btn-Custom-Text" })</td>
+            <td></td>
+            <td>@Html.ActionLink("Update Stats", "UpdateStats", "User", routeValues: new { StatsID = this.Model.SingleUser.StatsID }, htmlAttributes: new { @class = "btn btn-primary btn-Custom-Text" })</td>
+        </tr>
+    </table>
+</body>

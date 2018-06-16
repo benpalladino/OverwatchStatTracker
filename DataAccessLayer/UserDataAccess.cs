@@ -1,4 +1,5 @@
-﻿using System;
+﻿// AUTHOR - BEN PALLADINO - ONSHORE OUTSOURCING
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,13 +21,13 @@ namespace DataAccessLayer
         public static string ConnectionString = ConfigurationManager.ConnectionStrings["OverwatchStatTracker"].ConnectionString;
         static ErrorLogger Logger = new ErrorLogger();
 
-        //ADD USER
-        //THIS METHOD ADDS A USER TO THE SQL USER TABLE
+    //CREATE USERS
+    //--ADMIN, MODERATOR, AND USER WILL BE ABLE TO CREATE A USER.
+    //--VALUES REQUIRED FOR DATABASE ARE USERNAME, PASSWORD, EMAIL, AND BATTLENET ADDRESS.
         public bool AddUser(UsersDAO userToAdd)
         {
             //TRY TO EXECUTE THE CODE HERE, IF IT COMPLETES THEN THE BOOL SUCCESS = TRUE
-            bool success = true;
-
+            bool success = false;
             //THIS TRY ATTEMPTS TO OPEN A CONNECTION. IF IT SUCCEEDS, IT CLOSES THE CONNECTION. 
             try
             {
@@ -46,10 +47,8 @@ namespace DataAccessLayer
                         command.Parameters.AddWithValue("@StatsID", userToAdd.StatsID);
                         command.Parameters.AddWithValue("@HeroID", userToAdd.HeroID);
                         command.Parameters.AddWithValue("@TeamID", userToAdd.TeamID);
-
                         connection.Open();
                         command.ExecuteNonQuery();
-
                     }
                 }
             }
@@ -59,21 +58,21 @@ namespace DataAccessLayer
                 success = false;
                 Logger.LogError(error);
             }
-
-            finally
-            {
-
-            }
             return success;
         }
 
-        //GET USER
+    //VIEW USERS
+    //--ADMIN AND MODERATOR WILL BE ABLE TO VIEW ANY USERS INFORMATION.
+    //--USER WILL BE ABLE TO VIEW THEIR INFORMATION.
+    //--VALUES THAT CAN BE VIEWED FROM THE DATABASE ARE USERNAME, PASSWORD,
+    // EMAIL, AND BATTLENET ADDRESS, ROLES, STATS, HEROES, AND TEAM.
+
         //THIS METHOD READS A USER FROM THE SQL USER TABLE
         public List<UsersDAO> GetAllUsers()
         {
             //CREATES A NEW LIST OF USERS FROM THE SQL DATABASE
             List<UsersDAO> userList = new List<UsersDAO>();
-
+            
             //THIS TRY ATTEMPTS TO OPEN A CONNECTION. IF IT SUCCEEDS, IT CLOSES THE CONNECTION. 
             try
             {
@@ -97,10 +96,18 @@ namespace DataAccessLayer
                                 userToList.Password = reader.GetString(2);
                                 userToList.Email = reader.GetString(3);
                                 userToList.BattleNet = reader.GetString(4);
-                                userToList.HeroID = reader.GetInt32(5);
-                                userToList.RoleID = reader.GetInt32(6);
-                                userToList.StatsID = reader.GetInt32(7);
-                                userToList.TeamID = reader.GetInt32(8);
+                                userToList.StatsID = reader.GetInt32(5);
+                                userToList.HeroID = reader.GetInt32(6);
+                                userToList.HeroName = reader.GetString(7);
+                                userToList.RoleID = reader.GetInt32(8);
+                                userToList.RoleTitle = reader.GetString(9);
+                                userToList.TeamID = reader.GetInt32(10);
+                                userToList.TeamName = reader.GetString(11);
+                                userToList.StatsID = reader.GetInt32(12);
+                                userToList.HoursPlayed = reader.GetInt32(13);
+                                userToList.Wins = reader.GetInt32(14);
+                                userToList.Losses = reader.GetInt32(15);
+                                
                                 userList.Add(userToList);
                             }
                         }
@@ -112,20 +119,19 @@ namespace DataAccessLayer
             {
                 Logger.LogError(error);
             }
-
-            finally
-            {
-
-            }
             return userList;
         }
 
-        //UPDATE USER
-        //THIS METHOD READS A USER FROM THE SQL USER TABLE
-        public bool UpdateUser(UsersDAO userToUpdate)
+    //UPDATE USERS
+    //--ADMIN AND MODERATOR WILL BE ABLE TO UPDATE ANY USERS INFORMATION.
+    //--USER WILL BE ABLE TO UPDATE THEIR INFORMATION.
+    //--VALUES THAT CAN BE UPDATED FOR DATABASE ARE USERNAME, PASSWORD, EMAIL, AND BATTLENET ADDRESS.
+
+        //THIS METHOD UPDATES USERS FROM THE SQL USER TABLE
+        public bool UpdateUsers(UsersDAO userToUpdate)
         {
             //CHECKS TO SEE IF THE METHOD WAS SUCCESSFUL OR NOT
-            bool success = true;
+            bool success = false;
 
             //THIS TRY ATTEMPTS TO OPEN A CONNECTION. IF IT SUCCEEDS, IT CLOSES THE CONNECTION. 
             try
@@ -135,17 +141,16 @@ namespace DataAccessLayer
                 using (SqlConnection connection = new SqlConnection(ConnectionString))
                 {
                     //OPENS ACCESS TO SQL STORED PROCEDURE
-                    using (SqlCommand command = new SqlCommand("sp_UsersTable_UpdateUser"))
+                    using (SqlCommand command = new SqlCommand("sp_UsersTable_UpdateUser", connection))
                     {
                         command.CommandType = CommandType.StoredProcedure;
+                        command.Parameters.AddWithValue("@UserID", userToUpdate.UserID);
                         command.Parameters.AddWithValue("@Username", userToUpdate.Username);
-                        command.Parameters.AddWithValue("@Password", userToUpdate.Password);
                         command.Parameters.AddWithValue("@Email", userToUpdate.Email);
                         command.Parameters.AddWithValue("@BattleNet", userToUpdate.BattleNet);
-                        command.Parameters.AddWithValue("@HeroID", userToUpdate.HeroID);
+                        command.Parameters.AddWithValue("@TeamName", userToUpdate.TeamName);
                         command.Parameters.AddWithValue("@RoleID", userToUpdate.RoleID);
-                        command.Parameters.AddWithValue("@StatsID", userToUpdate.StatsID);
-                        command.Parameters.AddWithValue("@TeamID", userToUpdate.TeamID);
+
                         connection.Open();
                         command.ExecuteNonQuery();
                     }
@@ -156,18 +161,19 @@ namespace DataAccessLayer
                 success = false;
                 Logger.LogError(error);
             }
-            finally
-            {
-
-            }
             return success;
         }
 
-        //DELETE USER
+    //DELETE USERS
+    //--ADMIN AND MODERATOR WILL BE ABLE TO DELETE ANY USERS INFORMATION.
+    //--USER WILL BE ABLE TO DELETE THEIR INFORMATION.
+    //--VALUES THAT CAN BE DELETED FROM DATABASE ARE USERNAME, PASSWORD, EMAIL, AND BATTLENET ADDRESS
+    //  WITH CASCADING DELETE TO ROLE ID, STATS ID, TEAM ID, AND HERO ID.
+
         //THIS METHOD READS A USER FROM THE SQL USER TABLE
-        public bool DeleteUser(int UserID)
+        public bool DeleteUser(int UserID, int StatsID)
         {
-            bool success = true;
+            bool success = false;
 
             //THIS TRY ATTEMPTS TO OPEN A CONNECTION. IF IT SUCCEEDS, IT CLOSES THE CONNECTION. 
             try
@@ -178,6 +184,7 @@ namespace DataAccessLayer
                     {
                         command.CommandType = CommandType.StoredProcedure;
                         command.Parameters.AddWithValue("@UserID", UserID);
+                        command.Parameters.AddWithValue("@StatsID", StatsID);
                         connection.Open();
                         command.ExecuteNonQuery();
                     }
@@ -188,11 +195,7 @@ namespace DataAccessLayer
                 success = false;
                 Logger.LogError(error);
             }
-            finally
-            {
-
-            }
-            return success = true;
+            return success;
         }
 
         //GET USER BY ID
@@ -213,15 +216,22 @@ namespace DataAccessLayer
                         {
                             while (reader.Read())
                             {
-                                userToReturn.UserID = reader.GetInt32(0);
-                                userToReturn.Username = reader.GetString(1);
-                                userToReturn.Password = reader.GetString(2);
-                                userToReturn.Email = reader.GetString(3);
-                                userToReturn.BattleNet = reader.GetString(4);
-                                userToReturn.HeroID = reader.GetInt32(5);
-                                userToReturn.RoleID = reader.GetInt32(6);
-                                userToReturn.StatsID = reader.GetInt32(7);
-                                userToReturn.TeamID = reader.GetInt32(8);
+                                userToReturn.Username = reader.GetString(0);
+                                userToReturn.Password = reader.GetString(1);
+                                userToReturn.Email = reader.GetString(2);
+                                userToReturn.BattleNet = reader.GetString(3);
+                                userToReturn.UserID = reader.GetInt32(4);
+                                userToReturn.RoleID = reader.GetInt32(5);
+                                userToReturn.RoleTitle = reader.GetString(6);
+                                userToReturn.TeamID = reader.GetInt32(7);
+                                userToReturn.TeamName = reader.GetString(8);
+                                userToReturn.HeroID = reader.GetInt32(9);
+                                userToReturn.HeroName = reader.GetString(10);
+                                userToReturn.HeroType = reader.GetString(11);
+                                userToReturn.StatsID = reader.GetInt32(12);
+                                userToReturn.HoursPlayed = reader.GetInt32(13);
+                                userToReturn.Wins = reader.GetInt32(14);
+                                userToReturn.Losses = reader.GetInt32(15);
                             }
                         }
                     }
@@ -231,12 +241,9 @@ namespace DataAccessLayer
             {
                 Logger.LogError(error);
             }
-            finally
-            {
-
-            }
             return userToReturn;
         }
+
         //GET USER BY USERNAME
         //THIS METHOD READS A USER BY THEIR USERNAME FROM THE SQL USER TABLE
         public UsersDAO GetUserByUsername(string Username)
@@ -268,11 +275,79 @@ namespace DataAccessLayer
             {
                 Logger.LogError(error);
             }
-            finally
-            {
-
-            }
             return userToReturn;
+        }
+
+        //UPDATE USER'S FAVORITE HERO
+        //--ANY USER WILL BE ABLE TO UPDATE THEIR FAVORITE HERO.
+        //--VALUES THAT CAN BE UPDATED FOR DATABASE ARE HERO NAME AND HERO TYPE
+
+        //THIS METHOD UPDATES USERS FROM THE SQL USER TABLE
+        public bool UpdateUsersFavoriteHero(int UserID, string HeroName)
+        {
+            //CHECKS TO SEE IF THE METHOD WAS SUCCESSFUL OR NOT
+            bool success = false;
+
+            //THIS TRY ATTEMPTS TO OPEN A CONNECTION. IF IT SUCCEEDS, IT CLOSES THE CONNECTION. 
+            try
+            {
+                //TRY TO EXECUTE THE CODE HERE, IF IT COMPLETES THEN THE BOOL SUCCESS = TRUE
+                //OPENS CONNECTION TO THE SQL DATABASE
+                using (SqlConnection connection = new SqlConnection(ConnectionString))
+                {
+                    //OPENS ACCESS TO SQL STORED PROCEDURE
+                    using (SqlCommand command = new SqlCommand("sp_UsersTable_UpdateUsersFavoriteHero", connection))
+                    {
+                        command.CommandType = CommandType.StoredProcedure;
+                        command.Parameters.AddWithValue("@UserID", UserID);
+                        command.Parameters.AddWithValue("@HeroName", HeroName);
+
+                        connection.Open();
+                        command.ExecuteNonQuery();
+                    }
+                }
+            }
+            catch (Exception error)
+            {
+                success = false;
+                Logger.LogError(error);
+            }
+            return success;
+        }
+
+        //THIS METHOD UPDATES STATS FOR INDIVIDUAL USER ON STATS TABLE BY STATSID
+        public bool UpdateUserStats(UsersDAO userToUpdate)
+        {
+            //CHECKS TO SEE IF THE METHOD WAS SUCCESSFUL OR NOT
+            bool success = false;
+
+            //THIS TRY ATTEMPTS TO OPEN A CONNECTION. IF IT SUCCEEDS, IT CLOSES THE CONNECTION. 
+            try
+            {
+                //TRY TO EXECUTE THE CODE HERE, IF IT COMPLETES THEN THE BOOL SUCCESS = TRUE
+                //OPENS CONNECTION TO THE SQL DATABASE
+                using (SqlConnection connection = new SqlConnection(ConnectionString))
+                {
+                    //OPENS ACCESS TO SQL STORED PROCEDURE
+                    using (SqlCommand command = new SqlCommand("sp_UsersTable_UpdateStats", connection))
+                    {
+                        command.CommandType = CommandType.StoredProcedure;
+                        command.Parameters.AddWithValue("@StatsID", userToUpdate.StatsID);
+                        command.Parameters.AddWithValue("@HoursPlayed", userToUpdate.HoursPlayed);
+                        command.Parameters.AddWithValue("@Wins", userToUpdate.Wins);
+                        command.Parameters.AddWithValue("@Losses", userToUpdate.Losses);
+
+                        connection.Open();
+                        command.ExecuteNonQuery();
+                    }
+                }
+            }
+            catch (Exception error)
+            {
+                success = false;
+                Logger.LogError(error);
+            }
+            return success;
         }
     }
 }
